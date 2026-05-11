@@ -6,6 +6,7 @@ Orquesta todas las operaciones de control de la aplicación.
 from models.database_manager import DatabaseManager
 from controller.employee_controller import EmployeeController
 from controller.task_controller import TaskController
+from utils.decorators import log_execution
 
 
 class AppController:
@@ -35,6 +36,7 @@ class AppController:
         self.employee = EmployeeController(manager)
         self.task = TaskController(manager)
 
+    @log_execution
     def get_combined_data(self) -> tuple:
         """Obtiene listas de empleados y tareas para visualización.
 
@@ -48,6 +50,7 @@ class AppController:
         """
         return self.manager.get_combined_data()
 
+    @log_execution
     def close(self):
         """Cierra la conexión con la base de datos.
 

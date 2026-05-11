@@ -7,6 +7,7 @@ para la gestión de tareas en la base de datos.
 from datetime import datetime
 from models.database import DatabaseConnection
 from models.exceptions import DatabaseError
+from utils.decorators import require_db_connection, timer, handle_database_errors, cache_result
 
 
 class TaskModel:
@@ -33,6 +34,9 @@ class TaskModel:
         """
         self.db = db
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
     def add_task(
         self, emp_id: int, description: str, status: str = "todo"
     ) -> int | None:
@@ -68,6 +72,9 @@ class TaskModel:
         except DatabaseError:
             raise
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
     def get_by_id(self, task_id: int) -> tuple | None:
         """Recupera los datos de una tarea por su ID.
 
@@ -94,9 +101,14 @@ class TaskModel:
         except DatabaseError:
             raise
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
+    @cache_result
     def get_all(self) -> list[tuple]:
         """Recupera todas las tareas de la base de datos.
 
+        Nota: Este método usa caching para mejorar rendimiento.
         Returns:
             list[tuple]: Lista de tuplas (id, employee_id, description, status, start_time, finish_time).
 
@@ -115,6 +127,9 @@ class TaskModel:
         except DatabaseError:
             raise
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
     def get_by_employee(self, emp_id: int) -> list[dict]:
         """Obtiene todas las tareas asignadas a un empleado.
 
@@ -166,12 +181,17 @@ class TaskModel:
             )
         return tasks
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
+    @cache_result
     def get_all_with_employee(self) -> list[tuple]:
         """Recupera todas las tareas con el nombre del empleado asignado.
 
         Realiza un LEFT JOIN entre tasks y employee para incluir el nombre
         del empleado en lugar de solo su ID. Se usa para poblar la tabla
         de tareas en la interfaz gráfica.
+        Nota: Este método usa caching para mejorar rendimiento.
 
         Returns:
             list[tuple]: Lista de tuplas (task_id, description, status, employee_name).

@@ -4,6 +4,7 @@ Valida que valores sean números enteros válidos.
 """
 
 from validators.exceptions import IntegerValidatorError
+from utils.decorators import timer
 
 
 class IntegerValidator:
@@ -17,6 +18,7 @@ class IntegerValidator:
         True
     """
 
+    @timer
     def validate(self, value: str) -> bool:
         """Verifica si una cadena representa un número entero.
 

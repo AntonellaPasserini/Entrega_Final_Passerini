@@ -6,6 +6,7 @@ Maneja lógica de negocio para operaciones con empleados.
 from models.database_manager import DatabaseManager
 from models.exceptions import DatabaseError, ValidationError
 from validators import validate_email, validate_nonempty
+from utils.decorators import log_execution
 
 
 class EmployeeController:
@@ -32,6 +33,7 @@ class EmployeeController:
         """
         self.employee_model = manager.employee
 
+    @log_execution
     def add_employee(self, name: str, surname: str, country: str, email: str) -> str:
         """Agrega un nuevo empleado con validaciones.
 
@@ -64,6 +66,7 @@ class EmployeeController:
         except DatabaseError:
             raise
 
+    @log_execution
     def lookup_employee(self, emp_id: int) -> tuple:
         """Busca un empleado por su ID.
 
@@ -85,6 +88,7 @@ class EmployeeController:
             raise ValidationError(f"No employee with id {emp_id}.")
         return emp
 
+    @log_execution
     def get_all_employees(self) -> list:
         """Obtiene todos los empleados.
 
@@ -96,6 +100,7 @@ class EmployeeController:
         """
         return self.employee_model.get_all()
 
+    @log_execution
     def delete_employee(self, emp_id: int) -> str:
         """Elimina un empleado por su ID.
 

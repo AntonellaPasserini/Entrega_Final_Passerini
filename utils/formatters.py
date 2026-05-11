@@ -3,7 +3,10 @@
 Funciones auxiliares para formatear datos para mostrar.
 """
 
+from utils.decorators import timer
 
+
+@timer
 def format_employee_name(name: str, surname: str) -> str:
     """Formatea nombre de empleado completo.
 
@@ -21,6 +24,7 @@ def format_employee_name(name: str, surname: str) -> str:
     return f"{name} {surname}".strip()
 
 
+@timer
 def format_email(email: str) -> str:
     """Formatea email a minúsculas.
 
@@ -37,6 +41,7 @@ def format_email(email: str) -> str:
     return email.lower().strip()
 
 
+@timer
 def format_date(date_str: str | None) -> str:
     """Formatea fecha para visualización.
 
@@ -55,6 +60,7 @@ def format_date(date_str: str | None) -> str:
     return date_str if date_str else "(none)"
 
 
+@timer
 def truncate_text(text: str, max_length: int = 50) -> str:
     """Trunca texto a longitud máxima.
 

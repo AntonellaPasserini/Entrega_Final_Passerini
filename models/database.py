@@ -7,6 +7,7 @@ y transacciones con SQLite, implementando patrones de manejo de errores robusto.
 import os
 import sqlite3
 from models.exceptions import DatabaseError
+from utils.decorators import timer, handle_database_errors
 
 DB_FILENAME = os.path.join(os.path.dirname(__file__), '..', 'tasks.db')
 
@@ -46,6 +47,8 @@ class DatabaseConnection:
         except sqlite3.Error as exc:
             raise DatabaseError(f"No se pudo conectar a {self.db_path}: {exc}")
 
+    @timer
+    @handle_database_errors
     def execute(self, query: str, params: tuple | None = None) -> list:
         """Ejecuta una consulta SELECT y retorna los resultados.
 
@@ -68,6 +71,8 @@ class DatabaseConnection:
         except sqlite3.Error as exc:
             raise DatabaseError(f"Error al ejecutar consulta: {exc}")
 
+    @timer
+    @handle_database_errors
     def execute_one(self, query: str, params: tuple | None = None) -> tuple | None:
         """Ejecuta una consulta SELECT y retorna solo el primer resultado.
 
@@ -90,6 +95,8 @@ class DatabaseConnection:
         except sqlite3.Error as exc:
             raise DatabaseError(f"Error al ejecutar consulta: {exc}")
 
+    @timer
+    @handle_database_errors
     def execute_insert(self, query: str, params: tuple) -> int:
         """Ejecuta una consulta INSERT y retorna el ID del registro insertado.
 
@@ -114,6 +121,8 @@ class DatabaseConnection:
             self.conn.rollback()
             raise DatabaseError(f"Error al insertar: {exc}")
 
+    @timer
+    @handle_database_errors
     def execute_update(self, query: str, params: tuple) -> int:
         """Ejecuta una consulta UPDATE o DELETE.
 
@@ -135,6 +144,8 @@ class DatabaseConnection:
             self.conn.rollback()
             raise DatabaseError(f"Error al actualizar/eliminar: {exc}")
 
+    @timer
+    @handle_database_errors
     def executescript(self, script: str) -> None:
         """Ejecuta un script SQL (múltiples instrucciones).
 

@@ -5,6 +5,7 @@ Valida el formato de emails según expresiones regulares.
 
 import re
 from validators.exceptions import EmailValidatorError
+from utils.decorators import timer
 
 
 class EmailValidator:
@@ -22,6 +23,7 @@ class EmailValidator:
         """Inicializa validador con patrón regex."""
         self.pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
 
+    @timer
     def validate(self, email: str) -> bool:
         """Valida el formato de una dirección de correo.
 

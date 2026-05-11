@@ -4,8 +4,10 @@ Funciones auxiliares generales reutilizables.
 """
 
 from typing import Any
+from utils.decorators import timer
 
 
+@timer
 def safe_get(obj: dict, key: str, default: Any = None) -> Any:
     """Obtiene valor de diccionario de forma segura.
 
@@ -27,6 +29,7 @@ def safe_get(obj: dict, key: str, default: Any = None) -> Any:
     return obj.get(key, default) if obj else default
 
 
+@timer
 def is_valid_id(value: Any) -> bool:
     """Verifica si un valor es un ID válido (entero positivo).
 
@@ -49,6 +52,7 @@ def is_valid_id(value: Any) -> bool:
         return False
 
 
+@timer
 def batch_list(items: list, batch_size: int) -> list[list]:
     """Divide una lista en lotes.
 
@@ -66,6 +70,7 @@ def batch_list(items: list, batch_size: int) -> list[list]:
     return [items[i : i + batch_size] for i in range(0, len(items), batch_size)]
 
 
+@timer
 def flatten_list(nested_list: list) -> list:
     """Aplana una lista anidada.
 

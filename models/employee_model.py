@@ -6,6 +6,7 @@ específicas para empleados en la base de datos.
 
 from models.database import DatabaseConnection
 from models.exceptions import DatabaseError, ValidationError
+from utils.decorators import require_db_connection, timer, handle_database_errors, cache_result
 
 
 class EmployeeModel:
@@ -34,6 +35,9 @@ class EmployeeModel:
         """
         self.db = db
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
     def add_employee(
         self, name: str, surname: str, country: str, email: str
     ) -> int | None:
@@ -68,6 +72,9 @@ class EmployeeModel:
         except DatabaseError:
             raise
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
     def exists(self, emp_id: int) -> bool:
         """Verifica si un empleado existe en la base de datos.
 
@@ -91,6 +98,9 @@ class EmployeeModel:
         except DatabaseError:
             return False
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
     def get_by_id(self, emp_id: int) -> tuple | None:
         """Recupera los datos de un empleado por su ID.
 
@@ -117,11 +127,16 @@ class EmployeeModel:
         except DatabaseError:
             raise
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
+    @cache_result
     def get_all(self) -> list[tuple]:
         """Recupera todos los empleados de la base de datos.
 
         Devuelve una lista de tuplas con la información de cada empleado.
         Se usa para poblar la tabla de empleados en la interfaz gráfica.
+        Nota: Este método usa caching para mejorar rendimiento.
 
         Returns:
             list[tuple]: Lista de tuplas (id, name, surname, country, email).

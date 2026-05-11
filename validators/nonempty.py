@@ -4,6 +4,7 @@ Valida que campos requeridos contengan datos.
 """
 
 from validators.exceptions import NonemptyValidatorError
+from utils.decorators import timer
 
 
 class NonemptyValidator:
@@ -17,6 +18,7 @@ class NonemptyValidator:
         True
     """
 
+    @timer
     def validate(self, text: str) -> bool:
         """Verifica que una cadena no esté vacía tras eliminar espacios.
 

@@ -6,6 +6,7 @@ Implementa las operaciones relacionadas con el backlog (prioridades y seguimient
 from datetime import datetime
 from models.database import DatabaseConnection
 from models.exceptions import DatabaseError
+from utils.decorators import require_db_connection, timer, handle_database_errors, cache_result
 
 
 class BacklogModel:
@@ -31,6 +32,9 @@ class BacklogModel:
         """
         self.db = db
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
     def add_to_backlog(self, task_id: int, priority: int = 3) -> int | None:
         """Añade una tarea al backlog con prioridad especificada.
 
@@ -60,6 +64,9 @@ class BacklogModel:
         except DatabaseError:
             raise
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
     def get_by_id(self, backlog_id: int) -> tuple | None:
         """Recupera un registro de backlog por su ID.
 
@@ -85,6 +92,9 @@ class BacklogModel:
         except DatabaseError:
             raise
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
     def get_by_task(self, task_id: int) -> tuple | None:
         """Busca un registro de backlog por el ID de la tarea.
 
@@ -110,9 +120,14 @@ class BacklogModel:
         except DatabaseError:
             raise
 
+    @require_db_connection
+    @timer
+    @handle_database_errors
+    @cache_result
     def get_all(self) -> list[tuple]:
         """Recupera todos los registros de backlog.
 
+        Nota: Este método usa caching para mejorar rendimiento.
         Returns:
             list[tuple]: Lista de tuplas (id, task_id, created_at, priority).
 

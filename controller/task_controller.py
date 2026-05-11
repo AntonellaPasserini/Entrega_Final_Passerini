@@ -6,6 +6,7 @@ Maneja lógica de negocio para operaciones con tareas.
 from models.database_manager import DatabaseManager
 from models.exceptions import DatabaseError, ValidationError
 from validators import validate_int, validate_nonempty
+from utils.decorators import log_execution
 
 
 class TaskController:
@@ -32,6 +33,7 @@ class TaskController:
         self.task_model = manager.task
         self.employee_model = manager.employee
 
+    @log_execution
     def add_task(self, emp_id: int, description: str, status: str) -> str:
         """Agrega una nueva tarea con validaciones.
 
@@ -65,6 +67,7 @@ class TaskController:
         except DatabaseError:
             raise
 
+    @log_execution
     def lookup_task(self, task_id: int) -> tuple:
         """Busca una tarea por su ID con nombre de empleado.
 
@@ -89,6 +92,7 @@ class TaskController:
         emp_name = emp[1] if emp else "Unknown"
         return task, emp_name
 
+    @log_execution
     def get_tasks(self, emp_id: int) -> list:
         """Obtiene todas las tareas de un empleado.
 
@@ -108,6 +112,7 @@ class TaskController:
             raise ValidationError("Employee ID must be integer")
         return self.task_model.get_by_employee(emp_id)
 
+    @log_execution
     def get_all_tasks(self) -> list:
         """Obtiene todas las tareas con datos de empleados.
 
@@ -119,6 +124,7 @@ class TaskController:
         """
         return self.task_model.get_all_with_employee()
 
+    @log_execution
     def delete_task(self, task_id: int) -> str:
         """Elimina una tarea por su ID.
 

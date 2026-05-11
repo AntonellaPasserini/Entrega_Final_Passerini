@@ -10,6 +10,7 @@ from models.exceptions import DatabaseError
 from models.employee_model import EmployeeModel
 from models.task_model import TaskModel
 from models.backlog_model import BacklogModel
+from utils.decorators import timer, log_execution
 
 
 class DatabaseManager:
@@ -47,6 +48,8 @@ class DatabaseManager:
         self.task = TaskModel(self.db)
         self.backlog = BacklogModel(self.db)
 
+    @timer
+    @log_execution
     def initialize(self) -> None:
         """Inicializa la base de datos creando tablas y datos de ejemplo.
 
@@ -67,6 +70,7 @@ class DatabaseManager:
         except DatabaseError:
             raise
 
+    @timer
     def create_tables(self) -> None:
         """Crea las tablas principales de la base de datos.
 
@@ -111,6 +115,7 @@ CREATE TABLE IF NOT EXISTS backlog (
         except DatabaseError:
             raise
 
+    @timer
     def seed_data(self) -> None:
         """Inserta datos de ejemplo en las tablas vacías.
 
@@ -199,6 +204,7 @@ CREATE TABLE IF NOT EXISTS backlog (
         except DatabaseError:
             raise
 
+    @timer
     def create_view(self) -> None:
         """Crea una vista SQL que une empleados con sus tareas.
 
@@ -230,6 +236,7 @@ LEFT JOIN employee e ON e.id = t.employee_id;
         except DatabaseError:
             raise
 
+    @log_execution
     def get_combined_data(self) -> tuple:
         """Obtiene datos combinados de empleados y tareas.
 

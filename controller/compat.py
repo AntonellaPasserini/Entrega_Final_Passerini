@@ -5,6 +5,7 @@ Proporciona interfaz compatible con código legacy.
 
 from controller import AppController
 from validators import validate_int
+from utils.decorators import log_execution, deprecation_warning
 
 
 class TaskControllerCompat(AppController):
@@ -30,6 +31,7 @@ class TaskControllerCompat(AppController):
         self.task_model = manager.task
         self.backlog = manager.backlog
 
+    @log_execution
     def add_employee(self, name, surname, country, email):
         """Compatible con TaskController antiguo.
 
@@ -44,6 +46,7 @@ class TaskControllerCompat(AppController):
         """
         return self.employee.add_employee(name, surname, country, email)
 
+    @log_execution
     def add_task(self, emp_id, description, status):
         """Compatible con TaskController antiguo.
 
@@ -126,6 +129,7 @@ class TaskControllerCompat(AppController):
         """
         return self.get_combined_data()
 
+    @deprecation_warning("Usar employee.get_all_employees() en su lugar")
     def get_all_employees(self):
         """Obtiene todos los empleados.
 
@@ -134,6 +138,7 @@ class TaskControllerCompat(AppController):
         """
         return self.employee.get_all_employees()
 
+    @deprecation_warning("Usar task.get_all_tasks() en su lugar")
     def get_all_tasks_combined(self):
         """Obtiene todas las tareas con empleados.
 

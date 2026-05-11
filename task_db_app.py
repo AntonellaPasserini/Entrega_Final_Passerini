@@ -15,6 +15,7 @@ from models import DatabaseManager, DatabaseError
 from controller.compat import TaskControllerCompat
 from views import Launcher, UIManager
 from validators import nonempty, email, integer, exceptions as validator_exceptions
+from utils.decorators import log_execution, handle_database_errors
 
 
 # Agrupar las validaciones disponibles en un único objeto que se pasará a la UI
@@ -26,6 +27,8 @@ validaciones = {
 }
 
 
+@log_execution
+@handle_database_errors
 def main():
     """Inicializa y ejecuta la aplicación de escritorio.
 
