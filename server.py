@@ -146,6 +146,10 @@ class LogServer:
         """
         self.logger.info("Esperando conexiones de clientes...")
         
+        if self.server_socket is None:
+            self.logger.error("Server socket is not initialized")
+            return
+        
         while self.running:
             try:
                 client_socket, client_address = self.server_socket.accept()

@@ -149,7 +149,7 @@ class Launcher(tk.Tk):
 
         try:
             tasks = self.controller.get_all_tasks_combined()
-            for task_id, emp_id, emp_name, desc, status, start_date, finish_date in tasks:
+            for task_id, desc, status, emp_name in tasks:
                 # Put task_id in the tree (#0) so ID appears as the first column
                 self.task_tree.insert("", "end", text=str(task_id), values=(desc, emp_name, status))
         except Exception as e:

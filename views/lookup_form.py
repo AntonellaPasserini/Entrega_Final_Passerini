@@ -62,7 +62,7 @@ class LookupForm(BaseForm):
 
         btn_frame = tk.Frame(self)
         btn_frame.grid(row=5, column=0, columnspan=3, pady=8)
-        tk.Button(btn_frame, text="Close", command=self._on_cancel).pack()
+        tk.Button(btn_frame, text="Close", command=self.destroy).pack()
 
     def load_employee(self):
         """Carga datos del empleado por ID."""

@@ -1,0 +1,96 @@
+2026-05-12 08:47:58 | CLIENT MESSAGE | [Cliente #1 | 127.0.0.1:55037] GET / HTTP/1.1
+Host: localhost:9999
+Connection: keep-alive
+sec-ch-ua: "Chromium";v="148", "Google Chrome";v="148", "Not/A)Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: es-US,es-419;q=0.9,es;q=0.8
+2026-05-12 08:47:59 | CLIENT MESSAGE | [Cliente #2 | 127.0.0.1:50402] GET / HTTP/1.1
+Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+sec-ch-ua: "Chromium";v="148", "Google Chrome";v="148", "Not/A)Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: es-US,es-419;q=0.9,es;q=0.8
+2026-05-12 08:48:04 | CLIENT MESSAGE | [Cliente #3 | 127.0.0.1:64124] GET / HTTP/1.1
+Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+sec-ch-ua: "Chromium";v="148", "Google Chrome";v="148", "Not/A)Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: es-US,es-419;q=0.9,es;q=0.8
+2026-05-12 08:48:12 | CLIENT MESSAGE | [Cliente #5 | 127.0.0.1:58129] TEST: Mensaje de prueba 1
+2026-05-12 08:48:12 | CLIENT MESSAGE | [Cliente #5 | 127.0.0.1:58129] TEST: Mensaje de prueba 2
+2026-05-12 08:48:12 | CLIENT MESSAGE | [Cliente #5 | 127.0.0.1:58129] TEST: Mensaje de prueba 3
+2026-05-12 08:48:34 | CLIENT MESSAGE | [Cliente #4 | 127.0.0.1:56145] GET / HTTP/1.1
+Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+sec-ch-ua: "Chromium";v="148", "Google Chrome";v="148", "Not/A)Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: es-US,es-419;q=0.9,es;q=0.8
+2026-05-12 08:48:57 | CLIENT MESSAGE | [Cliente #1 | 127.0.0.1:54618] Cliente A: Aplicación iniciada
+2026-05-12 08:48:57 | CLIENT MESSAGE | [Cliente #1 | 127.0.0.1:54618] Cliente A: Conectando a BD
+2026-05-12 08:48:57 | CLIENT MESSAGE | [Cliente #1 | 127.0.0.1:54618] Cliente A: Operación exitosa
+2026-05-12 08:48:57 | CLIENT MESSAGE | [Cliente #2 | 127.0.0.1:54619] Cliente B: Procesando datos
+2026-05-12 08:48:57 | CLIENT MESSAGE | [Cliente #2 | 127.0.0.1:54619] Cliente B: Validando entrada
+2026-05-12 08:48:58 | CLIENT MESSAGE | [Cliente #2 | 127.0.0.1:54619] Cliente B: Completado
+2026-05-12 08:48:58 | CLIENT MESSAGE | [Cliente #3 | 127.0.0.1:54620] Cliente C: Error detectado
+2026-05-12 08:48:58 | CLIENT MESSAGE | [Cliente #3 | 127.0.0.1:54620] Cliente C: Reintentando
+2026-05-12 08:48:58 | CLIENT MESSAGE | [Cliente #3 | 127.0.0.1:54620] Cliente C: Recuperado
+2026-05-12 08:49:34 | CLIENT MESSAGE | [Cliente #4 | 127.0.0.1:55836] GET / HTTP/1.1
+Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+sec-ch-ua: "Chromium";v="148", "Google Chrome";v="148", "Not/A)Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: es-US,es-419;q=0.9,es;q=0.8

@@ -6,7 +6,7 @@ timing y caching de funciones.
 
 import functools
 import time
-from typing import Any, Callable, TypeVar
+from typing import Any, Callable, TypeVar, cast
 from utils.logging import log_event, log_error, log_success
 
 F = TypeVar('F', bound=Callable[..., Any])
@@ -45,7 +45,7 @@ def log_execution(func: F) -> F:
             print(log_error(f"Error in {func_name}", exc))
             raise
     
-    return wrapper
+    return cast(F, wrapper)
 
 
 def handle_database_errors(func: F) -> F:
@@ -74,7 +74,7 @@ def handle_database_errors(func: F) -> F:
             print(log_error(f"Database error in {func_name}", exc))
             raise
     
-    return wrapper
+    return cast(F, wrapper)
 
 
 def timer(func: F) -> F:
@@ -116,7 +116,7 @@ def timer(func: F) -> F:
             ))
             raise
     
-    return wrapper
+    return cast(F, wrapper)
 
 
 def cache_result(func: F) -> F:
@@ -157,7 +157,7 @@ def cache_result(func: F) -> F:
     # Exponer método para limpiar cache
     wrapper.clear_cache = lambda: cache.clear()  # type: ignore
     
-    return wrapper
+    return cast(F, wrapper)
 
 
 def validate_not_none(*arg_names: str) -> Callable[[F], F]:
@@ -194,7 +194,7 @@ def validate_not_none(*arg_names: str) -> Callable[[F], F]:
             
             return func(*args, **kwargs)
         
-        return wrapper
+        return cast(F, wrapper)
     
     return decorator
 
@@ -232,7 +232,7 @@ def require_db_connection(func: F) -> F:
         
         return func(self, *args, **kwargs)
     
-    return wrapper
+    return cast(F, wrapper)
 
 
 def deprecation_warning(message: str = "") -> Callable[[F], F]:
@@ -261,6 +261,6 @@ def deprecation_warning(message: str = "") -> Callable[[F], F]:
             print(log_event("WARNING", warning_msg, {}))
             return func(*args, **kwargs)
         
-        return wrapper
+        return cast(F, wrapper)
     
     return decorator
